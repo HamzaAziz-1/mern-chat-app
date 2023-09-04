@@ -1,30 +1,14 @@
-import Signin from "./Pages/Signin.js"
-import Signup from "./Pages/Signup.js"
-import Home from "./Pages/Home.js"
-import {BrowserRouter as Router, Redirect, Route, Switch} from 'react-router-dom'
-import { useContext } from "react"
-import { AuthContext } from "./Context/AuthContext.js"
+import "./App.css";
+import Homepage from "./Pages/Homepage";
+import { Route } from "react-router-dom";
+import Chatpage from "./Pages/Chatpage";
 
 function App() {
-  
-  const { user } = useContext(AuthContext)
-  
   return (
-    <Router>
-      <div className="App">
-        <Switch>
-          <Route exact path='/'>
-            {user ? <Home /> : <Signin />}
-          </Route>
-          <Route exact path='/signin'>
-            {user ? <Redirect to='/' /> : <Signin />}
-          </Route>
-          <Route exact path='/signup'>
-            {user ? <Redirect to='/' /> : <Signup/>}
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <div className="App">
+      <Route path="/" component={Homepage} exact />
+      <Route path="/chats" component={Chatpage} />
+    </div>
   );
 }
 
